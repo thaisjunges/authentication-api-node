@@ -19,11 +19,11 @@ API REST de autenticação desenvolvida com Node.js e Fastify, com senhas cripto
 - [x] Rota de perfil autenticada por token
 - [x] Validação de dados de entrada com Zod
 
-## 🔒 Validação de Dados
+### 🔒 Validação de Dados
 
 Agora a API utiliza **Zod** para validar os dados de entrada, garantindo que os campos enviados pelo usuário sigam o formato esperado antes de serem processados. O retorno do erro inclui detalhes (err.issues) para facilitar o debug.
 
-### Exemplos de validação:
+### Exemplos de validação
 
 - Email precisa ser válido
 - Senha deve ter no mínimo 6 caracteres
@@ -37,6 +37,7 @@ const userSchema = z.object({
   email: z.email('Email inválido'),
   senha: z.string().trim().min(8, 'Senha deve ter pelo menos 8 caracteres')
 });
+```
 
 ## 📡 Rotas
 
