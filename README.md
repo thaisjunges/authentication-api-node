@@ -9,6 +9,7 @@ API REST de autenticação desenvolvida com Node.js e Fastify, com senhas cripto
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 ![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
 ![bcrypt](https://img.shields.io/badge/bcrypt-338?style=for-the-badge)
+![Zod](https://img.shields.io/badge/Zod-000000?style=for-the-badge)
 
 ## 📋 Funcionalidades
 
@@ -16,15 +17,35 @@ API REST de autenticação desenvolvida com Node.js e Fastify, com senhas cripto
 - [x] Login com validação de senha
 - [x] Geração de token JWT
 - [x] Rota de perfil autenticada por token
+- [x] Validação de dados de entrada com Zod
+
+## 🔒 Validação de Dados
+
+Agora a API utiliza **Zod** para validar os dados de entrada, garantindo que os campos enviados pelo usuário sigam o formato esperado antes de serem processados. O retorno do erro inclui detalhes (err.issues) para facilitar o debug.
+
+### Exemplos de validação:
+
+- Email precisa ser válido
+- Senha deve ter no mínimo 6 caracteres
+
+**Exemplo de código:**
+```js
+import { z } from 'zod';
+
+const userSchema = z.object({
+  nome: z.string().min(3).max(30),
+  email: z.email('Email inválido'),
+  senha: z.string().trim().min(8, 'Senha deve ter pelo menos 8 caracteres')
+});
 
 ## 📡 Rotas
 
 | Método | Rota | Descrição | Auth |
 |---|---|---|---|
-| POST | /register | Cadastro de usuário | ❌ |
-| POST | /login | Login e geração de token JWT | ❌ |
-| GET | /usuarios | Lista todos os usuários | ❌ |
-| GET | /perfil | Dados do perfil via token | ✅ |
+| POST | /register | Cadastro de usuário | ❌ | ✅ (Zod) |
+| POST | /login | Login e geração de token JWT | ❌ | ✅ (Zod) |
+| GET | /usuarios | Lista todos os usuários | ❌ | | ❌ |
+| GET | /perfil | Dados do perfil via token | ✅ | | ❌ |
 
 ## 🔧 Como rodar localmente
 
