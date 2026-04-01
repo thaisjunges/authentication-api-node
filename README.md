@@ -26,7 +26,7 @@ Agora a API utiliza **Zod** para validar os dados de entrada, garantindo que os 
 ### Exemplos de validação
 
 - Email precisa ser válido
-- Senha deve ter no mínimo 6 caracteres
+- Senha deve ter no mínimo 8 caracteres
 
 **Exemplo de código:**
 ```js
