@@ -1,6 +1,6 @@
 # 🔐 Authentication API
 
-API REST de autenticação desenvolvida com Node.js e Fastify, com senhas criptografadas e autenticação via JWT.
+API REST de autenticação desenvolvida com Node.js e Fastify, com foco em segurança, validação de dados e proteção de rotas utilizando JWT e middleware de autenticação.
 
 ## 🚀 Tecnologias
 
@@ -39,14 +39,36 @@ const userSchema = z.object({
 });
 ```
 
+## 🔐 Autenticação com Middleware
+
+A API utiliza um middleware de autenticação para proteger rotas privadas.
+
+Esse middleware:
+
+- Verifica a presença do token no header Authorization
+- Valida o token usando JWT
+- Retorna erro 401 caso o token seja inválido ou expirado
+- Disponibiliza os dados do usuário autenticado via `request.user`
+
+**Exemplo de uso:**
+
+```js
+server.get('/perfil', { preHandler: authMiddleware }, async (request, reply) => {
+  return {
+    user: request.user
+  };
+});
+```
+
+
 ## 📡 Rotas
 
 | Método | Rota | Descrição | Auth |
 |---|---|---|---|
 | POST | /register | Cadastro de usuário | ❌ | ✅ (Zod) |
 | POST | /login | Login e geração de token JWT | ❌ | ✅ (Zod) |
-| GET | /usuarios | Lista todos os usuários | ❌ | | ❌ |
-| GET | /perfil | Dados do perfil via token | ✅ | | ❌ |
+| GET | /usuarios | Lista todos os usuários | ❌ | ❌ |
+| GET | /perfil | Dados do perfil via token | ✅ | ❌ |
 
 ## 🔧 Como rodar localmente
 
@@ -95,7 +117,7 @@ POST /register
 {
   "nome": "Thais",
   "email": "thais@email.com",
-  "senha": "123456"
+  "senha": "1234506"
 }
 ```
 
