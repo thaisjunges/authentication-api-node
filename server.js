@@ -25,9 +25,11 @@ pool.query('SELECT NOW()', (err, res) =>{
 
     server.register(authRoutes);
     server.register(userRoutes);
+    
+    const PORT = process.env.PORT || 10000 ;
 
        server.listen({
-    port: process.env.PORT || 10000,
+    port: PORT,
     host: '0.0.0.0'
 }).then(() => {
     console.log(`Servidor rodando na porta ${PORT}`);
