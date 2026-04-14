@@ -1,13 +1,11 @@
+import 'dotenv/config';
 import dotenv from "dotenv";
 import pool from "./src/database/connection.js";
-import 'dotenv/config';
 import fastify from "fastify";
 import authRoutes from './src/routes/auth.js';
 import userRoutes from './src/routes/usuario.js';
 
-dotenv.config({
-  path: "../.env"
-});
+
 console.log("DATABASE_URL =", process.env.DATABASE_URL);
 const server = fastify({
     logger: true
