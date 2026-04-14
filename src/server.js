@@ -1,0 +1,41 @@
+import dotenv from "dotenv";
+import pool from "./database/connection.js";
+import 'dotenv/config';
+import fastify from "fastify";
+import authRoutes from './routes/auth.js';
+import userRoutes from './routes/usuario.js';
+
+dotenv.config({
+  path: "../.env"
+});
+console.log("DATABASE_URL =", process.env.DATABASE_URL);
+const server = fastify({
+    logger: true
+})
+
+// Testar conexão com o bd
+pool.query('SELECT NOW()', (err, res) =>{
+        if (err){
+       console.log(err);
+       //console.log(process.env.DATABASE_URL);
+    } else{
+        console.log("Conexao com o banco de dados estabelecida com sucesso!");
+    }
+    })
+
+    server.register(authRoutes);
+    server.register(userRoutes);
+    
+    const PORT = process.env.PORT || 3333;
+
+       server.listen({
+    port: PORT
+}).then(() => {
+    console.log(`Servidor rodando na porta ${PORT}`);
+})
+/* //Endpoint para teste
+server.get('/', (request, reply) => {
+   return reply.send('Home da API de autenticação');
+}
+*/
+ 
