@@ -1,9 +1,9 @@
 import dotenv from "dotenv";
-import pool from "./database/connection.js";
+import pool from "./src/database/connection.js";
 import 'dotenv/config';
 import fastify from "fastify";
-import authRoutes from './routes/auth.js';
-import userRoutes from './routes/usuario.js';
+import authRoutes from './src/routes/auth.js';
+import userRoutes from './src/routes/usuario.js';
 
 dotenv.config({
   path: "../.env"
