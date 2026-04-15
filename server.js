@@ -11,6 +11,10 @@ const server = fastify({
     logger: true
 })
 
+server.get('/', async () => {
+    return { status: "API Online em execução" };
+});
+
 // Testar conexão com o bd
 pool.query('SELECT NOW()', (err, res) =>{
         if (err){
