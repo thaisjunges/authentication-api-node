@@ -136,6 +136,19 @@ GET /perfil
 Authorization: Bearer seu_token_aqui
 ```
 
+## 🌐 Link do Deploy
+
+A API está online e pode ser testada em:
+[https://auth-api-node-thais.onrender.com](https://auth-api-node-thais.onrender.com)
+*(Nota: O primeiro acesso pode demorar alguns segundos devido ao "Cold Start" do plano gratuito do Render).*
+
+### 📸 Prova de Conceito (Deploy)
+
+A imagem abaixo mostra o sucesso do registro de um novo usuário na nossa API hospedada no Render, com persistência direta no banco de dados do Railway:
+
+![Sucesso no Registro](assets/registro-sucesso.png)
+
+
 ## 👩‍💻 Autora
 
 **Thais Ferreira Junges**
